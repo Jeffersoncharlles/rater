@@ -1,8 +1,9 @@
 import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 import z from "zod";
-import { prisma } from "../../lib/prisma";
+import { prisma } from "@/lib/prisma";
 import { hash } from "bcryptjs";
+import { BadRequestError } from "@/routes/errors/bad-request-error";
 
 
 export async function createAccount(app:FastifyInstance) {
@@ -10,25 +11,28 @@ export async function createAccount(app:FastifyInstance) {
     '/account', {
       schema: {
         summary: 'Create a new Account',
-        tags: ['auth'],
+        tags: ['account'],
         body: z.object({
           name: z.string(),
           email: z.string(),
           password:z.string().min(8)
         }),
+        response: {
+          201:z.null()
+        }
       },
   },
     async (req, res) => {
       const { email, name, password } = req.body
 
-      const userWithSameEmail = await prisma.account.findUnique({
+      const accountWithSameEmail = await prisma.account.findUnique({
         where: {
           email
         }
       })
 
-      if (userWithSameEmail) {
-        throw new Error('user with same e-mail already exists.')
+      if (accountWithSameEmail) {
+        throw new BadRequestError('account with same e-mail already exists.')
       }
 
       const passwordHash = await hash(password, 6)

@@ -12,6 +12,7 @@ datasource db {
 
 model Account {
   id           String   @id @default(uuid())
+  userName     String   @unique @map("username")
   fullName     String   @map("full_name")
   email        String   @unique
   passwordHash String   @map("password_hash")
@@ -23,12 +24,28 @@ model Account {
   @@map("account")
 }
 
+model Movies {
+  id           String @id @default(cuid())
+  backdropPath String @map("backdrop_path")
+  posterPath   String @map("poster_path")
+  title        String
+  overview     String
+  releaseDate  String @map("release_date")
+
+  ratting Rating[]
+
+  @@map("movies")
+}
+
 model Rating {
   id     String @id @default(cuid())
   rating Int
 
-  account   Account @relation(fields: [accountId], references: [id])
+  account   Account @relation(fields: [accountId], references: [id], onDelete: Cascade)
   accountId String  @map("account_id")
+
+  movies  Movies @relation(fields: [movieId], references: [id], onDelete: Cascade)
+  movieId String @map("movie_id")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
