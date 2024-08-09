@@ -18,7 +18,7 @@ export const defaultTheme = {
     GRAY_400: '#484848',
     GRAY_300: '#606060',
     GRAY_200: '#6E6E6E',
-    GRAY_100:  '#7C7C7C',
+    GRAY_100: '#7C7C7C',
     GRAY_50:  '#B4B4B4',
   },
   FONT_SIZE: {
