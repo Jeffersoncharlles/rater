@@ -19,23 +19,23 @@ export const ContainerBigCard = styled.div`
   flex: 1;
   /* Animation=Fill */
 
-/* Auto layout */
-display: flex;
-flex-direction: column;
-justify-content: flex-end;
-align-items: flex-start;
-padding: 48px;
-gap: 12px;
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 48px;
+  gap: 12px;
 
-margin: 0 auto;
+  margin: 0 auto;
 
-height: 50rem;
+  height: 50rem;
 
-background: linear-gradient(180deg, rgba(0, 0, 0, 0) 17.12%, #000000 100%), url(image.png);
-background-position: center;
-background-size: cover;
-background-repeat: no-repeat;
-border-radius: 24px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 17.12%, #000000 100%), url(image.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 24px;
 
 /* Inside auto layout */
 /* flex: none;

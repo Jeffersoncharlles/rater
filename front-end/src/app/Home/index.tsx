@@ -3,6 +3,7 @@ import { ContainerBigCard, ContainerCards, ContainerMain, Heading2xl, MovieDetai
 import { HightLightText } from "../../components/ui/HightLightText"
 import { HightLightDetails } from "../../components/ui/HightLightDetails"
 
+
 export const Home = () => {
   return(
     <ContainerMain>

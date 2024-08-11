@@ -75,3 +75,18 @@ export const Button = styled.button`
     opacity: 0.8;
   }
 `
+
+
+export const Link = styled.span`
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin-top: 64px;
+  color: ${({ theme }) => theme.COLORS.GRAY_100};
+
+  >button{
+    background: transparent;
+    color: ${({theme})=> theme.COLORS.WHITE};
+  }
+
+`
