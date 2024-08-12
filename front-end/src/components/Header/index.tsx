@@ -31,7 +31,10 @@ export const Header = () => {
     setOpenSignInOrSignUp(false)
   }
 
-
+  function refreshPage() {
+    setOpen(false)
+    window.location.reload();
+  }
 
 
   return (
@@ -64,7 +67,7 @@ export const Header = () => {
             <DialogContent>
               {openSignInOrSignUp === true ? (
                 <>
-                  <FormSignUp setSubmit={()=>setOpen(false)} />
+                  <FormSignUp setSubmit={refreshPage} />
                   <Link>
                     Já tem uma conta?
                     <button onClick={() => setOpenSignInOrSignUp(!openSignInOrSignUp)}>
@@ -76,7 +79,7 @@ export const Header = () => {
 
               ) : (
                 <>
-                  <FormSignIn setSubmit={()=>setOpen(false)}/>
+                  <FormSignIn setSubmit={refreshPage}/>
                   <Link>
                     Não tem uma conta ainda?
                     <button onClick={() => setOpenSignInOrSignUp(!openSignInOrSignUp)}>

@@ -1,7 +1,5 @@
 import { DropdownMenu, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu"
 
-
-
 export const Profile = () => {
 
 
