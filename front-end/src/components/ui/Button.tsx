@@ -11,7 +11,7 @@ gap: 8px;
 
 color: ${({theme})=>theme.COLORS.WHITE};
 
-width: 100%;
+ width: 100%;
 
 background: ${({theme})=>theme.COLORS.GRAY_800};
 border-radius: 12px;
@@ -27,5 +27,21 @@ border-radius: 12px;
   &:disabled {
     cursor: not-allowed;
   }
+
+  &.primary {
+    /* border-radius: 0.75rem; */
+    padding: 12px 55px 12px 55px;
+    gap: 8px;
+    font-size: 1rem;
+    line-height: 1.2rem;
+    font-weight: 600;
+    color: ${({theme})=> theme.COLORS.WHITE};
+    background: ${({ theme }) => theme.COLORS.GRAY_800};
+
+    &:hover{
+      opacity: 0.8;
+    }
+  }
+
 
 `

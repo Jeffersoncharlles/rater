@@ -4,6 +4,7 @@ import z from "zod";
 import { prisma } from "@/lib/prisma";
 import { compare } from "bcryptjs";
 import { BadRequestError } from "@/routes/errors/bad-request-error";
+import { UnauthorizedError } from "../errors/unauthorized-error";
 
 
 export async function session(app:FastifyInstance) {
@@ -30,10 +31,11 @@ export async function session(app:FastifyInstance) {
         where: {
           email,
         },
-      })
+     })
 
       if (!accountFromEmail) {
-        throw new BadRequestError('Invalid credentials')
+
+        throw new UnauthorizedError('Invalid credentials')
       }
 
       const isPasswordValid = await compare(
@@ -41,7 +43,7 @@ export async function session(app:FastifyInstance) {
         accountFromEmail.passwordHash,
       )
       if (!isPasswordValid) {
-        throw new BadRequestError('Invalid credentials')
+        throw new UnauthorizedError('Invalid credentials')
       }
 
       const token = await res.jwtSign(

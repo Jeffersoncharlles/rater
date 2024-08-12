@@ -36,7 +36,8 @@ export async function readAccount(app:FastifyInstance) {
        select: {
          id: true,
          email: true,
-         fullName:true,
+         fullName: true,
+         userName:true
        }
      })
 

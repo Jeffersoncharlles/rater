@@ -76,6 +76,8 @@ const DialogContent = styled(Dialog.Content)`
 
 `
 
+const DialogClose = styled(Dialog.Close)``
+
 export {
   DialogContent,
   DialogOverlay,
@@ -83,5 +85,6 @@ export {
   DialogTrigger,
   DialogPortal,
   DialogTitle,
-  DialogDescription
+  DialogDescription,
+  DialogClose
 }

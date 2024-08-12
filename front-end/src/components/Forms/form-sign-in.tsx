@@ -1,10 +1,11 @@
-import { DialogDescription, DialogTitle } from "../Modal"
+import {  DialogDescription, DialogTitle } from "../Modal"
 import { InputForm } from "../ui/inputForm"
 import { BoxInput ,Container} from "./styles-sign-in"
 import { Button } from "../ui/Button"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
+import { signIn } from "../../http/sign-in"
 
 
 const signInSchema = z.object({
@@ -18,17 +19,23 @@ type schemaSignIn = z.infer<typeof signInSchema>
 
 export const FormSignIn = () => {
 
+
   const { register,handleSubmit, formState: { errors,isSubmitting } } = useForm<schemaSignIn>({
     resolver:zodResolver(signInSchema)
   })
 
+  const handleSignIn = async (data: schemaSignIn) => {
+    try {
+      const { email, password } = data
+      const response = await signIn({ email, password })
+      if (response?.token) {
+        localStorage.setItem('accessToken', JSON.stringify(response.token))
 
+      }
 
-
-  const signIn = async () => {
-
-
-
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -40,7 +47,7 @@ export const FormSignIn = () => {
       <DialogDescription>
        Bem vindo de volta! Entre com seus dados.
       </DialogDescription>
-      <form onSubmit={handleSubmit(signIn)} >
+      <form onSubmit={handleSubmit(handleSignIn)} >
         <Container>
           <BoxInput>
             <label htmlFor="email">E-mail </label>
@@ -64,14 +71,10 @@ export const FormSignIn = () => {
           </BoxInput>
         </Container>
 
-
-        <Button disabled={isSubmitting} className="top">
-          Fazer login
-        </Button>
-
+          <Button disabled={isSubmitting} type="submit" className="top">
+           Fazer login
+          </Button>
       </form>
-
-
     </>
   )
 }

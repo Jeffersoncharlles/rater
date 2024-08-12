@@ -12,7 +12,7 @@ datasource db {
 
 model Account {
   id           String   @id @default(uuid())
-  userName     String   @unique @map("username")
+  userName     String?  @unique @map("username")
   fullName     String   @map("full_name")
   email        String   @unique
   passwordHash String   @map("password_hash")

@@ -13,12 +13,16 @@ export async function createAccount(app:FastifyInstance) {
         summary: 'Create a new Account',
         tags: ['account'],
         body: z.object({
-          name: z.string(),
+          name: z.string().refine((value) => value.split(' ').length > 1, {
+            message: 'Por favor digite seu nome completo',
+          }),
           email: z.string(),
-          password:z.string().min(8)
+          password:z.string().min(8,{message:'Mínimo 8 caracteres'})
         }),
         response: {
-          201:z.null()
+          201:z.object({
+            token: z.string(),
+          }),
         }
       },
   },
@@ -37,7 +41,7 @@ export async function createAccount(app:FastifyInstance) {
 
       const passwordHash = await hash(password, 6)
 
-      await prisma.account.create({
+      const account  =  await prisma.account.create({
         data: {
           fullName: name,
           email,
@@ -45,8 +49,19 @@ export async function createAccount(app:FastifyInstance) {
         }
       })
 
+      //apos criar ja logar no sistema
+      const token = await res.jwtSign(
+        {
+          sub: account.id,
+        },
+        {
+          sign: {
+            expiresIn: '7d',
+          },
+        },
+      )
 
-      return res.status(201).send()
+      return res.status(201).send({token})
     }
   )
 }

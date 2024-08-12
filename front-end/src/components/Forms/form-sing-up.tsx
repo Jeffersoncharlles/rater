@@ -5,6 +5,7 @@ import { InputForm } from "../ui/inputForm"
 import { BoxInput, Container } from "./styles-sign-in"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { signUp } from "../../http/sign-up"
 
 
 const signUpSchema = z.object({
@@ -34,8 +35,15 @@ export const FormSignUp = () => {
 
 
 
-  const signUp = async () => {
+  const handleSignUp = async (data:schemaSignUp) => {
+    try {
+      const { email, name, password } = data
 
+      await signUp({name,email,password})
+
+    } catch (error) {
+        console.error(error)
+    }
 
 
   }
@@ -48,7 +56,7 @@ export const FormSignUp = () => {
       <DialogDescription>
         Insira seus dados para completar o cadastro.
       </DialogDescription>
-      <form  onSubmit={handleSubmit(signUp)} >
+      <form  onSubmit={handleSubmit(handleSignUp)} >
         <Container>
           <BoxInput>
             <label htmlFor="name">Nome completo</label>
@@ -92,15 +100,10 @@ export const FormSignUp = () => {
             {errors.password_confirm && <p>{errors.password_confirm.message}</p>}
           </BoxInput>
         </Container>
-
-
         <Button type="submit" className="top">
           Cadastrar
         </Button>
-
       </form>
-
-
     </>
   )
 }
