@@ -46,7 +46,17 @@ const DialogTrigger = styled(Dialog.Trigger)`
 //   )
 // }
 
+const DialogDescription = styled(Dialog.Description)`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.225rem;
+    color: ${({ theme }) => theme.COLORS.GRAY_100};
+    margin-top: 4px;
 
+`
 
 const DialogPortal = styled(Dialog.Portal)``
 
@@ -72,5 +82,6 @@ export {
   DialogRoot,
   DialogTrigger,
   DialogPortal,
-  DialogTitle
+  DialogTitle,
+  DialogDescription
 }

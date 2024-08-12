@@ -42,9 +42,9 @@ export const Header = () => {
 
 
 
-      <DialogRoot>
+      <DialogRoot onOpenChange={()=>setSignUp(false)}>
         <DialogTrigger asChild>
-          <Button>
+          <Button >
             Login
           </Button>
         </DialogTrigger>
@@ -56,9 +56,9 @@ export const Header = () => {
              <>
                 <FormSignUp />
                 <Link>
-                  Não tem uma conta ainda?
+                  Já tem uma conta?
                   <button onClick={()=>setSignUp(false)}>
-                    Criar conta
+                    Fazer login
                   </button>
                 </Link>
               </>

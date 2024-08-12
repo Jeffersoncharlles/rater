@@ -24,4 +24,8 @@ border-radius: 12px;
     opacity: 0.85;
   }
 
+  &:disabled {
+    cursor: not-allowed;
+  }
+
 `

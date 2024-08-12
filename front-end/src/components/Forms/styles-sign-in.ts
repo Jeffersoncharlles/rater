@@ -39,6 +39,14 @@ flex-grow: 0; */
 
     }
   }
+
+  >p{
+   margin-left: 8px;
+   font-size: 12px;
+   font-weight: 400;
+   line-height: 12px;
+   color: ${({theme})=>theme.COLORS.RED_400};
+  }
 `
 
 

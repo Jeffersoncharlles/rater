@@ -1,74 +1,101 @@
-import { useState } from "react"
-import { DialogTitle } from "../Modal"
+import { useForm } from "react-hook-form"
+import { DialogDescription, DialogTitle } from "../Modal"
 import { Button } from "../ui/Button"
 import { InputForm } from "../ui/inputForm"
 import { BoxInput, Container } from "./styles-sign-in"
+import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
 
+
+const signUpSchema = z.object({
+  name: z.string().refine((value) => value.split(' ').length > 1, {
+      message: 'Por favor digite seu nome completo',
+    }),
+  email: z.string().email("E-mail inválido"),
+  password: z
+      .string()
+      .min(8,{ message: 'Mínimo 8 caracteres' }),
+    password_confirm: z.string(),
+  })
+  .refine((data) => data.password === data.password_confirm, {
+    message: 'Senhas diferentes',
+    path: ['password_confirm'],
+})
+
+type schemaSignUp = z.infer<typeof signUpSchema>
 
 export const FormSignUp = () => {
-  const [email,setEmail] = useState('')
-  const [password, setPassword] = useState('')
 
-  function handleSubmit (e: React.FormEvent<HTMLFormElement>){
-    e.preventDefault()
+
+  const { register,handleSubmit, formState: { errors } } = useForm<schemaSignUp>({
+    resolver:zodResolver(signUpSchema)
+  })
+
+
+
+
+  const signUp = async () => {
+
+
+
   }
-
 
   return (
      <>
-      <DialogTitle>
-        <h2>Acesse sua conta</h2>
-        <p>Bem vindo de volta! Entre com seus dados.</p>
+      <DialogTitle asChild>
+        <h1>Crie sua conta</h1>
       </DialogTitle>
-      <form onSubmit={handleSubmit} >
+      <DialogDescription>
+        Insira seus dados para completar o cadastro.
+      </DialogDescription>
+      <form  onSubmit={handleSubmit(signUp)} >
         <Container>
           <BoxInput>
-            <label htmlFor="email">Name</label>
+            <label htmlFor="name">Nome completo</label>
             <InputForm
+              {...register('name')}
               id="name"
               type="text"
-              value={email}
-              placeholder="Digite seu e-mail"
-              onChange={(e)=>setEmail(e.target.value)}
-
+              placeholder="Nome completo"
             />
+            {errors.name && <p>{errors.name.message}</p>}
+
           </BoxInput>
           <BoxInput>
             <label htmlFor="email">E-mail </label>
             <InputForm
+              {...register('email')}
               id="email"
               type="email"
-              value={email}
               placeholder="Digite seu e-mail"
-              onChange={(e)=>setEmail(e.target.value)}
-
             />
+            {errors.email && <p>{errors.email.message}</p>}
           </BoxInput>
           <BoxInput>
             <label htmlFor="password">Senha</label>
             <InputForm
+              {...register('password')}
               id="password"
               type="password"
-              value={password}
               placeholder="Digite sua senha"
-              onChange={(e)=>setPassword(e.target.value)}
             />
+            {errors.password && <p>{errors.password.message}</p>}
           </BoxInput>
           <BoxInput>
-            <label htmlFor="password_confirm">Senha</label>
+            <label htmlFor="password_confirm">Confirmar senha</label>
             <InputForm
+              {...register('password_confirm')}
               id="password_confirm"
               type="password"
-              value={password}
-              placeholder="Digite sua senha"
-              onChange={(e)=>setPassword(e.target.value)}
+              placeholder="Confirmar senha"
             />
+            {errors.password_confirm && <p>{errors.password_confirm.message}</p>}
           </BoxInput>
         </Container>
 
 
-        <Button className="top">
-          Fazer login
+        <Button type="submit" className="top">
+          Cadastrar
         </Button>
 
       </form>
