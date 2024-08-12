@@ -16,16 +16,22 @@ import {
   DialogTrigger
 } from "../Modal"
 import { FormSignIn } from "../Forms/form-sign-in"
-import { useState } from "react"
+import {  useState } from "react"
 import { FormSignUp } from "../Forms/form-sing-up"
 import { useAuthStore } from "../../lib/zustand/authStore"
 import { Profile } from "../Profile/profile"
-
-
 export const Header = () => {
-  const {isLoggedIn } = useAuthStore()
 
-  const [signUp,setSignUp] = useState(false)
+  const {isLoggedIn } = useAuthStore()
+  const [open, setOpen] = useState(false);
+  const [openSignInOrSignUp, setOpenSignInOrSignUp] = useState(false);
+
+  function opens() {
+    setOpen(!open)
+    setOpenSignInOrSignUp(false)
+  }
+
+
 
 
   return (
@@ -47,7 +53,7 @@ export const Header = () => {
 
 
       {!isLoggedIn && (
-        <DialogRoot onOpenChange={() => setSignUp(false)}>
+        <DialogRoot open={open}  onOpenChange={opens}>
           <DialogTrigger asChild>
             <Button >
               Login
@@ -56,12 +62,12 @@ export const Header = () => {
           <DialogPortal>
             <DialogOverlay />
             <DialogContent>
-              {signUp === true ? (
+              {openSignInOrSignUp === true ? (
                 <>
-                  <FormSignUp />
+                  <FormSignUp setSubmit={()=>setOpen(false)} />
                   <Link>
                     Já tem uma conta?
-                    <button onClick={() => setSignUp(false)}>
+                    <button onClick={() => setOpenSignInOrSignUp(!openSignInOrSignUp)}>
                       Fazer login
                     </button>
                   </Link>
@@ -70,10 +76,10 @@ export const Header = () => {
 
               ) : (
                 <>
-                  <FormSignIn />
+                  <FormSignIn setSubmit={()=>setOpen(false)}/>
                   <Link>
                     Não tem uma conta ainda?
-                    <button onClick={() => setSignUp(true)}>
+                    <button onClick={() => setOpenSignInOrSignUp(!openSignInOrSignUp)}>
                       Criar conta
                     </button>
                   </Link>

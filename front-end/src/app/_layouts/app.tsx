@@ -5,11 +5,11 @@ import { useAuthStore } from "../../lib/zustand/authStore";
 import { useEffect } from "react";
 
 export function AppLayout() {
-  const { signIn,isLoggedIn } = useAuthStore()
+  const { authenticate,isLoggedIn } = useAuthStore()
 
   useEffect(() => {
-      signIn()
-  },[isLoggedIn, signIn])
+      authenticate()
+  },[isLoggedIn, authenticate])
 
   return (
     <Container >

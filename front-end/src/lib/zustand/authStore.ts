@@ -16,7 +16,7 @@ interface Profile {
 interface AuthStore {
   accountProfile:Profile | null;
   isLoggedIn: boolean;
-  signIn: ()=>void
+  authenticate: ()=>void
   logout: ()=>void
 }
 
@@ -26,7 +26,7 @@ const useAuthStore = create(
     (set) => ({
       isLoggedIn: false,
       accountProfile:null,
-      signIn: async () => {
+      authenticate: async () => {
         const userLocalStorage = localStorage.getItem('accessToken');
 
         if (userLocalStorage) {

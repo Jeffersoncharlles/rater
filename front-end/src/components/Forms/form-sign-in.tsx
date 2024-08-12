@@ -17,12 +17,18 @@ const signInSchema = z.object({
 
 type schemaSignIn = z.infer<typeof signInSchema>
 
-export const FormSignIn = () => {
+interface FormSignInProps {
+  setSubmit:()=>void
+}
+
+export const FormSignIn = ({ setSubmit}:FormSignInProps) => {
 
 
-  const { register,handleSubmit, formState: { errors,isSubmitting } } = useForm<schemaSignIn>({
-    resolver:zodResolver(signInSchema)
+  const { register,handleSubmit,setError,formState: { errors,isSubmitting, } } = useForm<schemaSignIn>({
+    resolver: zodResolver(signInSchema)
+
   })
+
 
   const handleSignIn = async (data: schemaSignIn) => {
     try {
@@ -30,9 +36,12 @@ export const FormSignIn = () => {
       const response = await signIn({ email, password })
       if (response?.token) {
         localStorage.setItem('accessToken', JSON.stringify(response.token))
-
+          setSubmit()
+        }
+      if (response?.message) {
+        setError("email",{message:response.message})
+        setError("password",{message:response.message})
       }
-
     } catch (error) {
       console.error(error)
     }
@@ -71,7 +80,8 @@ export const FormSignIn = () => {
           </BoxInput>
         </Container>
 
-          <Button disabled={isSubmitting} type="submit" className="top">
+
+           <Button disabled={isSubmitting} onClick={()=> setSubmit} type="submit" className="top">
            Fazer login
           </Button>
       </form>

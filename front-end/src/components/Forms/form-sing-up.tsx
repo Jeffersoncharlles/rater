@@ -3,7 +3,7 @@ import { DialogDescription, DialogTitle } from "../Modal"
 import { Button } from "../ui/Button"
 import { InputForm } from "../ui/inputForm"
 import { BoxInput, Container } from "./styles-sign-in"
-import { z } from "zod"
+import {  z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { signUp } from "../../http/sign-up"
 
@@ -25,27 +25,30 @@ const signUpSchema = z.object({
 
 type schemaSignUp = z.infer<typeof signUpSchema>
 
-export const FormSignUp = () => {
+interface FormSignUpProps {
+  setSubmit:()=>void
+}
 
-
-  const { register,handleSubmit, formState: { errors } } = useForm<schemaSignUp>({
+export const FormSignUp = ({ setSubmit}:FormSignUpProps) => {
+  const { register,handleSubmit,setError, formState: { errors } } = useForm<schemaSignUp>({
     resolver:zodResolver(signUpSchema)
   })
-
-
-
 
   const handleSignUp = async (data:schemaSignUp) => {
     try {
       const { email, name, password } = data
 
-      await signUp({name,email,password})
-
+      const response = await signUp({ name, email, password })
+      if (response?.token) {
+        localStorage.setItem('accessToken', JSON.stringify(response.token))
+          setSubmit()
+      }
+      if (response?.message) {
+        setError("email",{message:response.message})
+      }
     } catch (error) {
         console.error(error)
     }
-
-
   }
 
   return (
