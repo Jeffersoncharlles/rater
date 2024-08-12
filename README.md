@@ -19,3 +19,30 @@ Requisitos
 - Hospedar o código em um ou mais repositórios públicos no Github.
 - Hospedar a API e o front end.
 - Os dois projetos em Typescript devem estar configurados no tsconfig com `strict: true`, `strictNullChecks: true`, `noImplicitAny: true`
+
+
+### Tecnologias usadas
+
+## Front-End
+- Vitejs
+- Typescript
+- styled-components
+- React-hook-form
+- React-router-dom
+- Zustand
+- Lucide react
+- Axios
+- Zod
+- radix-ui Primitive
+
+
+## Back-End
+
+- Fastify
+- Swagger
+- prisma
+- bcryptjs
+- Fastify-type-provider-zod
+- Zod
+- JWT
+- Typescript

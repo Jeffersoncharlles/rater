@@ -11,7 +11,6 @@ gap: 8px;
 
 color: ${({theme})=>theme.COLORS.WHITE};
 
- width: 100%;
 
 background: ${({theme})=>theme.COLORS.GRAY_800};
 border-radius: 12px;
