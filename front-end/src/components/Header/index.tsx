@@ -15,11 +15,11 @@ import {
   DialogRoot,
   DialogTrigger
 } from "../Modal"
-import { FormSignIn } from "../Forms/form-sign-in"
+import { FormSignIn } from "./SignInAndSignUp/form-sign-in"
 import {  useState } from "react"
-import { FormSignUp } from "../Forms/form-sing-up"
+import { FormSignUp } from "./SignInAndSignUp/form-sing-up"
 import { useAuthStore } from "../../lib/zustand/authStore"
-import { Profile } from "../Profile/profile"
+import { Profile } from "./Profile/profile"
 export const Header = () => {
 
   const {isLoggedIn } = useAuthStore()

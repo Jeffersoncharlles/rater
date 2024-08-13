@@ -2,7 +2,7 @@ import { ReactNode } from "react"
 import styled from "styled-components"
 
 
-
+//####################################################################################################//
 const InputContainer = styled.input`
   display: flex;
   flex: 1;
@@ -16,8 +16,11 @@ const InputContainer = styled.input`
   }
 `
 
+//####################################################################################################//
+//####################################################################################################//
 export const Input = ({children}: {children:ReactNode}) => {
   return <InputContainer>
     {children}
   </InputContainer>
 }
+//####################################################################################################//

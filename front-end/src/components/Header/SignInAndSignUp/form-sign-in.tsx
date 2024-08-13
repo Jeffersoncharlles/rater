@@ -1,11 +1,11 @@
-import {  DialogDescription, DialogTitle } from "../Modal"
-import { InputForm } from "../ui/inputForm"
+import {  DialogDescription, DialogTitle } from "../../Modal"
+import { InputForm } from "../../ui/inputForm"
 import { BoxInput ,Container} from "./styles-sign-in"
-import { Button } from "../ui/Button"
+import { Button } from "../../ui/Button"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { signIn } from "../../http/sign-in"
+import { signIn } from "../../../http/sign-in"
 
 
 const signInSchema = z.object({

@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form"
-import { DialogDescription, DialogTitle } from "../Modal"
-import { Button } from "../ui/Button"
-import { InputForm } from "../ui/inputForm"
+import { DialogDescription, DialogTitle } from "../../Modal"
+import { Button } from "../../ui/Button"
+import { InputForm } from "../../ui/inputForm"
 import { BoxInput, Container } from "./styles-sign-in"
 import {  z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { signUp } from "../../http/sign-up"
+import { signUp } from "../../../http/sign-up"
 
 
 const signUpSchema = z.object({

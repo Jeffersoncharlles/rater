@@ -1,10 +1,11 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import styled from 'styled-components';
 
+
+//####################################################################################################//
 const DialogRoot = styled(Dialog.Root)``
 
-DialogRoot.displayName = 'DialogRoot'
-
+//####################################################################################################//
 const DialogTitle = styled(Dialog.Title)`
   display: flex;
   align-items: center;
@@ -24,6 +25,7 @@ const DialogTitle = styled(Dialog.Title)`
   }
 
 `
+//####################################################################################################//
 
 const DialogOverlay = styled(Dialog.Overlay)`
   position: absolute;
@@ -33,19 +35,11 @@ const DialogOverlay = styled(Dialog.Overlay)`
   backdrop-filter: blur(8px);
   /* animation: 150ms cubic-bezier(0.16, 1, 0.3, 1); */
 `
-
+//####################################################################################################//
 const DialogTrigger = styled(Dialog.Trigger)`
 `
 
-// const DialogContent = ({children}:{children:React.ReactNode}) => {
-//   return (
-//     <Content>
-//       <DialogOverlay />
-//       {children}
-//     </Content>
-//   )
-// }
-
+//####################################################################################################//
 const DialogDescription = styled(Dialog.Description)`
     display: flex;
     align-items: center;
@@ -57,10 +51,10 @@ const DialogDescription = styled(Dialog.Description)`
     margin-top: 4px;
 
 `
-
+//####################################################################################################//
 const DialogPortal = styled(Dialog.Portal)``
 
-
+//####################################################################################################//
 const DialogContent = styled(Dialog.Content)`
   background: ${({ theme }) => theme.COLORS.GRAY_950};
   z-index: 3;
@@ -75,8 +69,12 @@ const DialogContent = styled(Dialog.Content)`
   padding: 3rem;
 
 `
+//####################################################################################################//
+export const Description = styled(Dialog.Description)``
+//####################################################################################################//
 
 const DialogClose = styled(Dialog.Close)``
+//####################################################################################################//
 
 export {
   DialogContent,
@@ -88,3 +86,4 @@ export {
   DialogDescription,
   DialogClose
 }
+//####################################################################################################//

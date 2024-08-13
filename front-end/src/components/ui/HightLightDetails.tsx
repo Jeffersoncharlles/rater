@@ -2,7 +2,7 @@ import { ReactNode } from "react"
 import styled from "styled-components"
 
 
-
+//####################################################################################################//
 const Span = styled.div`
 display: flex;
 flex-direction: row;
@@ -22,9 +22,10 @@ gap: 24px;
  }
 
 `
-
+//####################################################################################################//
 export const HightLightDetails = ({children}: {children:ReactNode}) => {
   return <Span>
     {children}
   </Span>
 }
+//####################################################################################################//

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-
+//####################################################################################################//
 export const HeaderContainer = styled('header')`
   max-width: 90rem;
   display: flex;
@@ -9,7 +9,7 @@ export const HeaderContainer = styled('header')`
   justify-content: space-between;
   padding: 1.5rem;
 `
-
+//####################################################################################################//
 export const SectionContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -26,7 +26,7 @@ export const SectionContainer = styled.div`
   }
 
 `
-
+//####################################################################################################//
 
 export const ButtonIcon = styled.button`
   border-radius: 100%;
@@ -46,7 +46,7 @@ export const ButtonIcon = styled.button`
   }
 
 `
-
+//####################################################################################################//
 export const InputContainer = styled.input`
   display: flex;
   flex: 1;
@@ -60,7 +60,7 @@ export const InputContainer = styled.input`
   }
 
 `
-
+//####################################################################################################//
 export const Button = styled.button`
   border-radius: 0.75rem;
   padding: 12px 55px 12px 55px;
@@ -75,7 +75,7 @@ export const Button = styled.button`
     opacity: 0.8;
   }
 `
-
+//####################################################################################################//
 
 export const Link = styled.span`
   display: flex;
@@ -90,3 +90,4 @@ export const Link = styled.span`
   }
 
 `
+//####################################################################################################//

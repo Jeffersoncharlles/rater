@@ -16,7 +16,10 @@ export async function updateAccount(app:FastifyInstance) {
         tags: ['account'],
         body: z.object({
           fullName: z.string(),
-          password:z.string().min(8)
+          email: z.string().email(),
+          username: z.string({}).min(4,{
+          message: 'Digite seu nome de usuário',
+          }).max(16,{message:'Pode Conter no máximo 16 caracteres'}).nullable(),
         }),
          response: {
           204: z.null()
@@ -26,7 +29,7 @@ export async function updateAccount(app:FastifyInstance) {
     async (req, res) => {
       const userId = await req.useId()
 
-      const { fullName, password } = req.body
+      const { fullName, username } = req.body
 
       const accountWithId = await prisma.account.findUnique({
         where: {
@@ -38,15 +41,13 @@ export async function updateAccount(app:FastifyInstance) {
         throw new UnauthorizedError('Invalid Credentials.')
       }
 
-      const passwordHash = await hash(password, 6)
-
       await prisma.account.update({
         where: {
           email:accountWithId.email
         },
         data: {
           fullName,
-          passwordHash
+          userName:username
         }
       })
 

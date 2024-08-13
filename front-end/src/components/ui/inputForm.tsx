@@ -4,6 +4,7 @@ import styled from "styled-components"
 
 type InputProps = React.ComponentProps<'input'>
 
+//####################################################################################################//
 const Input = styled.input`
   display: flex;
   border-radius: .75rem;
@@ -11,8 +12,17 @@ const Input = styled.input`
 
   background: ${({theme})=> theme.COLORS.GRAY_800};
   color: ${({ theme }) => theme.COLORS.WHITE};
-`
 
+  &.full{
+    width: 100%;
+  }
+
+  &:disabled{
+    color: ${({ theme }) => theme.COLORS.GRAY_200};
+  }
+`
+//####################################################################################################//
+//####################################################################################################//
 export const InputForm = React.forwardRef<HTMLInputElement, InputProps>(
   ({ ...props }, ref) => {
   return (
@@ -24,3 +34,4 @@ export const InputForm = React.forwardRef<HTMLInputElement, InputProps>(
   )
 }
 )
+//####################################################################################################//
