@@ -8,14 +8,14 @@ export const ContainerMain = styled.main`
   flex-direction: column;
 
 
-/* .parent {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 8px;
-}
 
-.div1 {
+    /* display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 8px; */
+
+
+/* .div1 {
     grid-column: span 3 / span 3;
     grid-row: span 6 / span 6;
 }
@@ -35,17 +35,19 @@ export const ContainerMain = styled.main`
     grid-row: span 2 / span 2;
     grid-column-start: 4;
     grid-row-start: 5;
-} */
+}  */
 
 `
 //####################################################################################################//
 
 
 export const SectionHightLight = styled.section`
+  /* grid-column: span 5; */
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap: 12px;
 `
 //####################################################################################################//
 
@@ -67,12 +69,6 @@ export const ContainerBigCard = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 24px;
-
-  >div{
-
-
-
-  }
 `
 //####################################################################################################//
 export const MovieDetailsCard = styled.div`
@@ -99,3 +95,36 @@ export const ContainerCards = styled.div`
   gap: 12px;
 `
 //####################################################################################################//
+
+export const Overview = styled.div`
+  display: flex;
+  width: 35rem;
+
+  font-size: 1rem;
+  line-height: 1.375rem;
+  font-weight: 500;
+
+  margin-bottom: 3rem;
+`
+
+
+type Props  = {
+    urlImage: string
+}
+
+export const CardContainer = styled.div<Props>`
+display: flex;
+flex-direction: column;
+padding: 12px;
+gap: 12px;
+
+width: 380px;
+height: 253.67px;
+
+background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${({ urlImage }) => urlImage});
+ background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+border-radius: 24px;
+
+`

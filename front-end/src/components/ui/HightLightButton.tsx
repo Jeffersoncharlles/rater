@@ -1,28 +1,36 @@
-import { ReactNode } from "react"
+import * as React from 'react'
+
 import styled from "styled-components"
 
+type HightLightButtonProps = React.ComponentProps<'button'>
+
 //####################################################################################################//
-const Span = styled.div`
-  z-index: 2;
+const Button = styled.button`
+  /* z-index: 2; */
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 8px;
-  gap: 4px;
+  padding: 14px 12px;
+  gap: 8px;
 
-  font-weight: 600;
-
-  width: 10rem;
-  text-align: center;
+  max-width: 14rem;
 
   color: ${({theme})=>theme.COLORS.WHITE};
   border-radius: 8px;
-  padding: 8px;
   gap: 4px;
 
-  &.trailer{
-    width: rem;
+  >svg{
+    fill: ${({ theme }) => theme.COLORS.WHITE};
+    height: 20px;
+    width: 20px;
+  }
+
+  &:hover{
+    opacity: .8;
+  }
+
+  &.mb{
+    margin-bottom: 3rem;
   }
 
   //Glassmorphism
@@ -32,9 +40,15 @@ const Span = styled.div`
 `
 //####################################################################################################//
 //####################################################################################################//
-export const HightLightText = ({children}: {children:ReactNode}) => {
-  return <Span>
-    {children}
-  </Span>
+export const HightLightButton = React.forwardRef<HTMLButtonElement, HightLightButtonProps>(
+  ({ ...props }, ref) => {
+  return (
+    <Button
+      ref={ref}
+      {...props}
+
+    />
+  )
 }
+)
 //####################################################################################################//

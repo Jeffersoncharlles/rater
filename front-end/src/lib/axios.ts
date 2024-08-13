@@ -4,17 +4,25 @@ import { env } from "../env";
 export const api = axios.create({
   baseURL:env.VITE_API_URL
 })
+// const userLocalStorage = localStorage.getItem('accessToken') ?? ""
+// api.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(userLocalStorage)}`
 
+api.interceptors.request.use(
+  config => {
+    const token = localStorage.getItem('accessToken')
 
-// api.interceptors.request.use(
-//   config => {
-//     config.headers['Authorization'] = `${localStorage.getItem('accessToken')}`;
-//         return config;
-//     },
-//     error => {
-//         return Promise.reject(error);
-//     }
-// );
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${JSON.parse(token)}`;
+        return config;
+    }
+
+    return config
+
+    },
+    error => {
+        return Promise.reject(error);
+    }
+);
 
 api.interceptors.response.use((response) => {
   return response

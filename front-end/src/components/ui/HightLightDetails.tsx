@@ -19,6 +19,12 @@ gap: 24px;
     fill: ${({ theme }) => theme.COLORS.YELLOW_300};
     color: transparent;
   }
+
+  >strong{
+    font-size: 14px;
+    font-family: 500;
+    color: ${({ theme }) => theme.COLORS.GRAY_50};
+  }
  }
 
 `

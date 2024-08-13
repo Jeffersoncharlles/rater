@@ -2,7 +2,6 @@ import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 import z from "zod";
 import { prisma } from "@/lib/prisma";
-import { hash } from "bcryptjs";
 import { UnauthorizedError } from "@/routes/errors/unauthorized-error";
 import { auth } from "@/middlewares/auth";
 
@@ -41,7 +40,7 @@ export async function updateAccount(app:FastifyInstance) {
         throw new UnauthorizedError('Invalid Credentials.')
       }
 
-      await prisma.account.update({
+     const account =  await prisma.account.update({
         where: {
           email:accountWithId.email
         },
@@ -50,7 +49,6 @@ export async function updateAccount(app:FastifyInstance) {
           userName:username
         }
       })
-
 
       return res.status(204).send()
     }

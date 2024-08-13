@@ -39,8 +39,8 @@ export const FormSignIn = ({ setSubmit}:FormSignInProps) => {
           setSubmit()
         }
       if (response?.message) {
-        setError("email",{message:response.message})
-        setError("password",{message:response.message})
+        setError("email",{message:"Credenciais Invalida"})
+        setError("password",{message:'Credenciais Invalida'})
       }
     } catch (error) {
       console.error(error)

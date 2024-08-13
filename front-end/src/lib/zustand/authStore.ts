@@ -1,7 +1,6 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
 import { GetProfile } from "../../http/get-profile"
-import { api } from "../axios"
 
 
 interface Profile {
@@ -31,7 +30,6 @@ const useAuthStore = create(
 
         if (userLocalStorage) {
           set({ isLoggedIn: true });
-          api.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(userLocalStorage)}`
 
           const userLoginStatus = localStorage.getItem('userLoginStatus') ?? ""
           const accountPRoff = JSON.parse(userLoginStatus)

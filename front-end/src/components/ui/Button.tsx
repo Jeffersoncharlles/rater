@@ -63,5 +63,19 @@ border-radius: 12px;
       opacity: .8;
     }
   }
+
+
+  &.xl{
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 1rem;
+    line-height: 1.21rem;
+    font-weight: 700;
+    width: 100%;
+
+    &:hover{
+      opacity: .8;
+    }
+  }
 `
 //####################################################################################################//

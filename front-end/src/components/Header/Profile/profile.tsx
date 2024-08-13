@@ -26,6 +26,8 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { UpdateProfile } from "../../../http/update-profile"
+import * as AlertDialog from '@radix-ui/react-alert-dialog';
+import { AlertDelete } from "./Delete/alertDialog"
 
 
 const profileSchema = z.object({
@@ -42,31 +44,29 @@ type updateSchemaProfile = z.infer<typeof profileSchema>
 
 export const Profile = () => {
 
-  const { accountProfile, logout } = useAuthStore()
+  const {  logout , accountProfile,authenticate } = useAuthStore()
 
   const { register, handleSubmit, formState: {
     errors
   } } = useForm<updateSchemaProfile>({
     resolver:zodResolver(profileSchema),
     defaultValues: {
-      email: accountProfile?.profile.email,
-      name: accountProfile?.profile.fullName,
-      username:accountProfile?.profile.userName
+      email: accountProfile?.profile.email ?? '',
+      name: accountProfile?.profile.fullName ?? '',
+      username:accountProfile?.profile.userName ?? ''
     }
   })
+
 
   const handleUpdateProfile = async (data: updateSchemaProfile) => {
     try {
       const { email, name, username } = data
-
-      await UpdateProfile({email,name,username})
-
+      await UpdateProfile({ email, name, username })
+      authenticate()
     } catch (error) {
       console.log(error)
     }
-
   }
-
 
   const name = accountProfile?.profile.userName ?? accountProfile?.profile.fullName.split(' ')[0]
 
@@ -142,17 +142,19 @@ export const Profile = () => {
                   </BoxContainerInputNames>
                 </div>
 
-                <div>
-                  <BoxDescription className="delete">
+
+                <BoxDescription className="delete">
                     <h2>Encerramento da conta</h2>
                     <p>Ao deletar sua conta, todos os seus dados serão permanentemente excluídos. Esta ação é irreversível.</p>
-                  </BoxDescription>
-                  <Button className="delete">
-                    Deletar conta
-                  </Button>
-                </div>
-
-
+                </BoxDescription>
+                <AlertDialog.Root>
+                  <AlertDialog.Trigger asChild>
+                    <Button  className="delete">
+                      Deletar conta
+                    </Button>
+                  </AlertDialog.Trigger>
+                    <AlertDelete />
+                </AlertDialog.Root>
 
                 <BoxContainerSave>
                   <Button className="primitive" type="submit">
@@ -160,6 +162,7 @@ export const Profile = () => {
                   </Button>
                 </BoxContainerSave>
               </form>
+
 
               <Close  >
                   <X />
