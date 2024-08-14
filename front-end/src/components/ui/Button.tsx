@@ -23,6 +23,11 @@ border-radius: 12px;
 
   &:disabled {
     cursor: not-allowed;
+    opacity: .4;
+  }
+
+  &:hover:disabled{
+    opacity: .4;
   }
 
   &.primary {

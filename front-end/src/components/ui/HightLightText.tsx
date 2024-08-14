@@ -1,8 +1,10 @@
-import { ReactNode } from "react"
+import React from "react"
 import styled from "styled-components"
 
+type HightLightTextProps = React.ComponentProps<'div'>
+
 //####################################################################################################//
-const Span = styled.div`
+const Span = styled.div<HightLightTextProps>`
   z-index: 2;
   display: flex;
   flex-direction: row;
@@ -25,6 +27,11 @@ const Span = styled.div`
     width: rem;
   }
 
+  &.sm{
+    width:4rem;
+    padding: 4px;
+  }
+
   //Glassmorphism
   background: rgba(255,255,255,0.2);
   backdrop-filter: blur(20px);
@@ -32,9 +39,12 @@ const Span = styled.div`
 `
 //####################################################################################################//
 //####################################################################################################//
-export const HightLightText = ({children}: {children:ReactNode}) => {
-  return <Span>
-    {children}
-  </Span>
-}
+export const HightLightText = React.forwardRef<HTMLDivElement, HightLightTextProps>(
+  ({ ...props }, ref) => {
+    return <Span
+      {...props}
+      ref={ref}
+
+    />
+})
 //####################################################################################################//

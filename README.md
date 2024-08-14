@@ -1,8 +1,9 @@
 # rater
+
 desafio full-stack plenor
 
-
 Requisitos
+
 1. Front end
     - Fazer um client em React.
     - O client deverá consumir a API que você criou.
@@ -16,14 +17,15 @@ Requisitos
     - Cada usuário deve poder logar no sistema.
     - Documentação da API e suas rotas.
     - Implementar sistema de autenticação com email e senha.
+
 - Hospedar o código em um ou mais repositórios públicos no Github.
 - Hospedar a API e o front end.
 - Os dois projetos em Typescript devem estar configurados no tsconfig com `strict: true`, `strictNullChecks: true`, `noImplicitAny: true`
 
-
 ### Tecnologias usadas
 
 ## Front-End
+
 - Vitejs
 - Typescript
 - styled-components
@@ -35,6 +37,13 @@ Requisitos
 - Zod
 - radix-ui Primitive
 
+## PREVIEW
+
+- [Back end Docs](https://rater-ydnp.onrender.com/docs/)
+
+- [Back end Routes](https://rater-ydnp.onrender.com/)
+
+## 🚀 Technologies
 
 ## Back-End
 

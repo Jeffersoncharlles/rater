@@ -86,6 +86,19 @@ export const Heading2xl = styled.h1`
   font-size: 2.5rem;
   line-height: 3rem;
   font-weight: 700;
+
+  color: ${({ theme }) => theme.COLORS.WHITE};
+
+`
+
+
+export const HeadingLg = styled.h2`
+  font-size: 1.5rem;
+  line-height: 1.2rem;
+  font-weight: 700;
+
+  color: ${({ theme }) => theme.COLORS.WHITE};
+  z-index: 20;
 `
 //####################################################################################################//
 export const ContainerCards = styled.div`
@@ -94,6 +107,9 @@ export const ContainerCards = styled.div`
   width: 380px;
   gap: 12px;
 `
+
+
+
 //####################################################################################################//
 
 export const Overview = styled.div`
@@ -106,25 +122,35 @@ export const Overview = styled.div`
 
   margin-bottom: 3rem;
 `
+//####################################################################################################//
+export const CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+  gap: 60px;
 
+  width: 380px;
+  height: 253.67px;
+  z-index: 1;
 
-type Props  = {
-    urlImage: string
-}
-
-export const CardContainer = styled.div<Props>`
-display: flex;
-flex-direction: column;
-padding: 12px;
-gap: 12px;
-
-width: 380px;
-height: 253.67px;
-
-background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${({ urlImage }) => urlImage});
- background-position: center;
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-border-radius: 24px;
+  border-radius: 24px;
+  position: relative;
+
+  /* >div{
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    height: 100%;
+  } */
+
+`
+export const OverlayCard = styled.div`
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  position: absolute;
+  inset: 0;
 
 `

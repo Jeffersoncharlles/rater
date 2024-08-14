@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { signIn } from "../../../http/sign-in"
+import { Loader } from "../../ui/LoadingSpinner"
 
 
 const signInSchema = z.object({
@@ -82,7 +83,7 @@ export const FormSignIn = ({ setSubmit}:FormSignInProps) => {
 
 
            <Button disabled={isSubmitting} onClick={()=> setSubmit} type="submit" className="top">
-           Fazer login
+          {isSubmitting && (<Loader />)} Fazer login
           </Button>
       </form>
     </>

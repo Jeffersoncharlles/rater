@@ -15,8 +15,8 @@ export const GetProfile = async () => {
 
   try {
       const response = await api.get<Profile>('/account')
+    if (response.data.profile) {
 
-  if (response.data.profile) {
     return response.data
   }
   if (response.data.message) {

@@ -15,8 +15,9 @@ interface Profile {
 interface AuthStore {
   accountProfile:Profile | null;
   isLoggedIn: boolean;
-  authenticate: ()=>void
+  authenticate: ()=>Promise<void>
   logout: ()=>void
+  refresh: ()=>Promise<void>
 }
 
 
@@ -24,7 +25,7 @@ const useAuthStore = create(
   persist<AuthStore>(
     (set) => ({
       isLoggedIn: false,
-      accountProfile:null,
+      accountProfile: null,
       authenticate: async () => {
         const userLocalStorage = localStorage.getItem('accessToken');
 
@@ -35,22 +36,32 @@ const useAuthStore = create(
           const accountPRoff = JSON.parse(userLoginStatus)
 
           if (accountPRoff.state.accountProfile === null) {
-             const account = await GetProfile()
-              if (account?.profile) {
-                set({accountProfile:account})
-              }
+            const account = await GetProfile()
+            if (account?.profile) {
+              set({ accountProfile: account })
+            }
           }
 
         }
         if (!userLocalStorage) {
           set({ accountProfile: null })
-          set({isLoggedIn:false})
+          set({ isLoggedIn: false })
         }
       },
       logout: () => {
-          set({ isLoggedIn: false });
-          localStorage.clear();
+        set({ isLoggedIn: false });
+        localStorage.clear();
+      },
+      refresh: async () => {
+        const userLocalStorage = localStorage.getItem('accessToken');
+        if (userLocalStorage) {
+          set({ isLoggedIn: true });
+        }
+        const account = await GetProfile()
+
+        set({ accountProfile: account })
       }
+
     }),
 
     {

@@ -18,6 +18,7 @@ const Button = styled.button`
   color: ${({theme})=>theme.COLORS.WHITE};
   border-radius: 8px;
   gap: 4px;
+  z-index: 2;
 
   >svg{
     fill: ${({ theme }) => theme.COLORS.WHITE};

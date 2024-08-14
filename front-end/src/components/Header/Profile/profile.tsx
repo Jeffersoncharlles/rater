@@ -28,7 +28,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { UpdateProfile } from "../../../http/update-profile"
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 import { AlertDelete } from "./Delete/alertDialog"
-
+import { useState } from "react"
 
 const profileSchema = z.object({
   name: z.string().refine((value) => value.split(' ').length > 1, {
@@ -44,16 +44,18 @@ type updateSchemaProfile = z.infer<typeof profileSchema>
 
 export const Profile = () => {
 
-  const {  logout , accountProfile,authenticate } = useAuthStore()
+  const [open, setOpen] = useState(false);
 
-  const { register, handleSubmit, formState: {
+  const {  logout , accountProfile,refresh } = useAuthStore()
+
+  const { register, handleSubmit ,formState: {
     errors
   } } = useForm<updateSchemaProfile>({
-    resolver:zodResolver(profileSchema),
-    defaultValues: {
-      email: accountProfile?.profile.email ?? '',
-      name: accountProfile?.profile.fullName ?? '',
-      username:accountProfile?.profile.userName ?? ''
+    resolver: zodResolver(profileSchema),
+    defaultValues:{
+      email: accountProfile?.profile.email,
+      name: accountProfile?.profile.fullName,
+      username:accountProfile?.profile.userName
     }
   })
 
@@ -62,21 +64,28 @@ export const Profile = () => {
     try {
       const { email, name, username } = data
       await UpdateProfile({ email, name, username })
-      authenticate()
+      refresh()
+      setOpen(!open)
     } catch (error) {
       console.log(error)
     }
   }
 
-  const name = accountProfile?.profile.userName ?? accountProfile?.profile.fullName.split(' ')[0]
+  const handleProfileUpdateModal = async (e:Event) => {
+    e.preventDefault()
+  }
+
+
+
+  const name = accountProfile?.profile.userName  ?? accountProfile?.profile.fullName.split(' ')[0]
 
   return (
     <DropdownMenu.Root>
       <DropdownMenuTrigger> {name} </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <Dialog.Root >
+        <Dialog.Root open={open} onOpenChange={setOpen}>
           <Dialog.Trigger  asChild>
-            <DropdownMenuItem aria-modal onSelect={(e) => e.preventDefault()}>
+            <DropdownMenuItem aria-modal onSelect={handleProfileUpdateModal}>
               <UserRound /> Perfil
             </DropdownMenuItem>
           </Dialog.Trigger>

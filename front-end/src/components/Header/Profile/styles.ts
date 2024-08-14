@@ -31,6 +31,7 @@ export const DropdownMenuContent = styled(DropdownMenu.Content)`
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
   border-radius: 8px;
+  z-index: 2;
 
 `
 //####################################################################################################//

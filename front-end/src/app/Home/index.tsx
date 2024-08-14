@@ -1,5 +1,5 @@
 import { Flame, Play, Star } from "lucide-react"
-import { CardContainer, ContainerBigCard, ContainerCards, ContainerMain, Heading2xl, MovieDetailsCard, Overview, SectionHightLight } from "./style"
+import { CardContainer, ContainerBigCard, ContainerCards, ContainerMain, Heading2xl, HeadingLg, MovieDetailsCard, OverlayCard, Overview, SectionHightLight } from "./style"
 import { HightLightText } from "../../components/ui/HightLightText"
 import { HightLightDetails } from "../../components/ui/HightLightDetails"
 import { HightLightButton } from "../../components/ui/HightLightButton"
@@ -43,45 +43,29 @@ export const Home = () => {
           </MovieDetailsCard>
         </ContainerBigCard>
         <ContainerCards>
-          <CardContainer urlImage={Links[0]}>
-            <HightLightText>
-               <Flame />
-              Em destaque
-            </HightLightText>
-            <Heading2xl>
-              Deadpool & Wolverine
-            </Heading2xl>
-             <HightLightButton className="mb" >
-              Assistir ao trailer
-              <Play />
-            </HightLightButton>
-          </CardContainer>
-          <CardContainer urlImage={Links[1]}>
-            <HightLightText>
-               <Flame />
-              Em destaque
-            </HightLightText>
-            <Heading2xl>
-              Deadpool & Wolverine
-            </Heading2xl>
-             <HightLightButton className="mb" >
-              Assistir ao trailer
-              <Play />
-            </HightLightButton>
-          </CardContainer>
-          <CardContainer urlImage={Links[2]}>
-            <HightLightText>
-               <Flame />
-              Em destaque
-            </HightLightText>
-            <Heading2xl>
-              Deadpool & Wolverine
-            </Heading2xl>
-             <HightLightButton className="mb" >
-              Assistir ao trailer
-              <Play />
-            </HightLightButton>
-          </CardContainer>
+          {Links.map((link, index) => {
+            return (
+              <CardContainer style={{ backgroundImage: `url(${link.imageUrl})` }} key={index}>
+                <OverlayCard />
+
+                  <HightLightText className="sm" >
+                  <HightLightDetails>
+                    <span>
+                      <Star />
+                    {link.rating}
+                    </span>
+                  </HightLightDetails>
+                </HightLightText>
+                <HeadingLg>
+                  {link.title}
+                </HeadingLg>
+                <HightLightButton className="mb" >
+                  Assistir ao trailer
+                  <Play />
+                </HightLightButton>
+              </CardContainer>
+            )
+          })}
         </ContainerCards>
       </SectionHightLight>
     </ContainerMain>
