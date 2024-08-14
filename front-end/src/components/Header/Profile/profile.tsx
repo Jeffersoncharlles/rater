@@ -28,7 +28,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { UpdateProfile } from "../../../http/update-profile"
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 import { AlertDelete } from "./Delete/alertDialog"
-import { useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 const profileSchema = z.object({
   name: z.string().refine((value) => value.split(' ').length > 1, {
@@ -46,17 +46,20 @@ export const Profile = () => {
 
   const [open, setOpen] = useState(false);
 
-  const {  logout , accountProfile,refresh } = useAuthStore()
+  const { logout, accountProfile, refresh } = useAuthStore()
 
-  const { register, handleSubmit ,formState: {
+
+  const { register, handleSubmit ,reset,formState: {
     errors
   } } = useForm<updateSchemaProfile>({
     resolver: zodResolver(profileSchema),
-    defaultValues:{
-      email: accountProfile?.profile.email,
-      name: accountProfile?.profile.fullName,
-      username:accountProfile?.profile.userName
-    }
+    defaultValues: useMemo(() => {
+      return {
+        email: accountProfile?.profile.email,
+        name: accountProfile?.profile.fullName,
+        username:accountProfile?.profile.userName
+        }
+    }, [accountProfile])
   })
 
 
@@ -71,11 +74,17 @@ export const Profile = () => {
     }
   }
 
-  const handleProfileUpdateModal = async (e:Event) => {
+  const handleProfileUpdateModal = async (e: Event) => {
     e.preventDefault()
   }
 
-
+  useEffect(()=>{
+    reset({
+        email: accountProfile?.profile.email,
+        name: accountProfile?.profile.fullName,
+        username:accountProfile?.profile.userName
+    })
+  },[accountProfile?.profile, reset])
 
   const name = accountProfile?.profile.userName  ?? accountProfile?.profile.fullName.split(' ')[0]
 
@@ -92,7 +101,7 @@ export const Profile = () => {
           <DropdownMenuSeparator />
             <DropdownMenuItem onClick={()=>logout()} >
               <LogOut /> Desconectar
-            </DropdownMenuItem>
+          </DropdownMenuItem>
           <Dialog.Portal>
             <DialogOverlay />
             <Content>
