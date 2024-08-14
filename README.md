@@ -22,7 +22,14 @@ Requisitos
 - Hospedar a API e o front end.
 - Os dois projetos em Typescript devem estar configurados no tsconfig com `strict: true`, `strictNullChecks: true`, `noImplicitAny: true`
 
-### Tecnologias usadas
+## 🚀 Technologies
+
+## PREVIEW
+
+- [Front End](https://rater-4nilpft5r-jeffersoncharlles-projects.vercel.app/)
+
+
+
 
 ## Front-End
 
