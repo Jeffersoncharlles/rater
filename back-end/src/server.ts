@@ -62,5 +62,6 @@ app.register(routes)
 
 //server running
 app.listen({
-  port:env.SERVER_PORT
-}).then(()=> console.log(`Server Running 🤟🏻: PORT:${env.SERVER_PORT}`))
+  port: env.PORT,
+  host:'0.0.0.0'
+}).then(()=> console.log(`Server Running 🤟🏻: PORT:${env.PORT}`))
