@@ -19,7 +19,8 @@ export async function readAccount(app:FastifyInstance) {
             profile: z.object({
               id: z.string().uuid(),
               fullName: z.string(),
-              email:z.string().email()
+              email:z.string().email(),
+              userName:z.string().nullable()
             }),
           }),
         },
