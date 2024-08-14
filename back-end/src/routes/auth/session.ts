@@ -3,7 +3,6 @@ import { ZodTypeProvider } from "fastify-type-provider-zod";
 import z from "zod";
 import { prisma } from "@/lib/prisma";
 import { compare } from "bcryptjs";
-import { BadRequestError } from "@/routes/errors/bad-request-error";
 import { UnauthorizedError } from "../errors/unauthorized-error";
 
 
