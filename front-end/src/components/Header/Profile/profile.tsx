@@ -90,7 +90,7 @@ export const Profile = () => {
 
   return (
     <DropdownMenu.Root>
-      <DropdownMenuTrigger> {name} </DropdownMenuTrigger>
+      <DropdownMenuTrigger> {name ?? 'Usuário'} </DropdownMenuTrigger>
       <DropdownMenuContent>
         <Dialog.Root open={open} onOpenChange={setOpen}>
           <Dialog.Trigger  asChild>

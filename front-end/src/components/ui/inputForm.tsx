@@ -18,7 +18,9 @@ const Input = styled.input`
   }
 
   &:disabled{
+     background: ${({theme})=> theme.COLORS.GRAY_900};
     color: ${({ theme }) => theme.COLORS.GRAY_200};
+    cursor: none;
   }
 `
 //####################################################################################################//

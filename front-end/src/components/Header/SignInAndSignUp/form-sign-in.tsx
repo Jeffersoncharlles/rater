@@ -25,10 +25,12 @@ interface FormSignInProps {
 export const FormSignIn = ({ setSubmit}:FormSignInProps) => {
 
 
-  const { register,handleSubmit,setError,formState: { errors,isSubmitting, } } = useForm<schemaSignIn>({
+  const { register,handleSubmit,setError,formState: { errors,isSubmitting } } = useForm<schemaSignIn>({
     resolver: zodResolver(signInSchema)
 
   })
+
+  console.log(isSubmitting)
 
 
   const handleSignIn = async (data: schemaSignIn) => {
@@ -67,6 +69,7 @@ export const FormSignIn = ({ setSubmit}:FormSignInProps) => {
               type="email"
               {...register('email')}
               placeholder="Digite seu e-mail"
+              disabled={isSubmitting}
             />
             {errors.email && <p>{errors.email.message}</p>}
           </BoxInput>
@@ -77,6 +80,7 @@ export const FormSignIn = ({ setSubmit}:FormSignInProps) => {
               type="password"
               placeholder="Digite sua senha"
               {...register('password')}
+              disabled={isSubmitting}
             />
              {errors.password && <p>{errors.password?.message}</p>}
           </BoxInput>
