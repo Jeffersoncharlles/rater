@@ -22,7 +22,7 @@ import { useAuthStore } from "../../lib/zustand/authStore"
 import { Profile } from "./Profile/profile"
 export const Header = () => {
 
-  const {isLoggedIn } = useAuthStore()
+  const {isLoggedIn,refresh } = useAuthStore()
   const [open, setOpen] = useState(false);
   const [openSignInOrSignUp, setOpenSignInOrSignUp] = useState(false);
 
@@ -33,6 +33,7 @@ export const Header = () => {
 
   function refreshPage() {
     setOpen(false)
+    refresh()
   }
 
 

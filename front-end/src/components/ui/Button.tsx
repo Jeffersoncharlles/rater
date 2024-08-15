@@ -9,6 +9,8 @@ align-items: center;
 padding: 14px 12px;
 gap: 8px;
 
+
+
 color: ${({theme})=>theme.COLORS.WHITE};
 background: ${({theme})=>theme.COLORS.GRAY_800};
 border-radius: 12px;
@@ -43,6 +45,9 @@ border-radius: 12px;
     &:hover{
       opacity: 0.8;
     }
+  }
+  &.login{
+    width: 100%;
   }
 
   &.delete{

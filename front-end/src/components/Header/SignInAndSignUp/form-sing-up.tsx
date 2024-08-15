@@ -30,7 +30,7 @@ interface FormSignUpProps {
 }
 
 export const FormSignUp = ({ setSubmit}:FormSignUpProps) => {
-  const { register,handleSubmit,setError, formState: { errors } } = useForm<schemaSignUp>({
+  const { register,handleSubmit,setError, formState: { errors ,isSubmitting } } = useForm<schemaSignUp>({
     resolver:zodResolver(signUpSchema)
   })
 
@@ -68,6 +68,7 @@ export const FormSignUp = ({ setSubmit}:FormSignUpProps) => {
               id="name"
               type="text"
               placeholder="Nome completo"
+              disabled={isSubmitting}
             />
             {errors.name && <p>{errors.name.message}</p>}
 
@@ -79,6 +80,7 @@ export const FormSignUp = ({ setSubmit}:FormSignUpProps) => {
               id="email"
               type="email"
               placeholder="Digite seu e-mail"
+              disabled={isSubmitting}
             />
             {errors.email && <p>{errors.email.message}</p>}
           </BoxInput>
@@ -89,6 +91,7 @@ export const FormSignUp = ({ setSubmit}:FormSignUpProps) => {
               id="password"
               type="password"
               placeholder="Digite sua senha"
+              disabled={isSubmitting}
             />
             {errors.password && <p>{errors.password.message}</p>}
           </BoxInput>
@@ -99,11 +102,12 @@ export const FormSignUp = ({ setSubmit}:FormSignUpProps) => {
               id="password_confirm"
               type="password"
               placeholder="Confirmar senha"
+              disabled={isSubmitting}
             />
             {errors.password_confirm && <p>{errors.password_confirm.message}</p>}
           </BoxInput>
         </Container>
-        <Button type="submit" className="top">
+        <Button disabled={isSubmitting} type="submit" className="top login">
           Cadastrar
         </Button>
       </form>

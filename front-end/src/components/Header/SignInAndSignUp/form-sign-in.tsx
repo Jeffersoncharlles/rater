@@ -30,9 +30,6 @@ export const FormSignIn = ({ setSubmit}:FormSignInProps) => {
 
   })
 
-  console.log(isSubmitting)
-
-
   const handleSignIn = async (data: schemaSignIn) => {
     try {
       const { email, password } = data
@@ -87,8 +84,8 @@ export const FormSignIn = ({ setSubmit}:FormSignInProps) => {
         </Container>
 
 
-           <Button disabled={isSubmitting} onClick={()=> setSubmit} type="submit" className="top">
-          {isSubmitting && (<Loader />)} Fazer login
+           <Button disabled={isSubmitting} onClick={()=> setSubmit} type="submit" className="top login">
+          {isSubmitting ? (<Loader />): 'Fazer login'}
           </Button>
       </form>
     </>
