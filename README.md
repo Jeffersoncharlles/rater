@@ -26,7 +26,7 @@ Requisitos
 
 ## PREVIEW
 
-- [Front End](https://rater-4nilpft5r-jeffersoncharlles-projects.vercel.app/)
+- [Front End](https://rater-seven.vercel.app/)
 
 
 
