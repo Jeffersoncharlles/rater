@@ -1,9 +1,14 @@
-import { Flame, Play, Star } from "lucide-react"
-import { CardContainer, ContainerBigCard, ContainerCards, ContainerMain, Heading2xl, HeadingLg, MovieDetailsCard, OverlayCard, Overview, SectionHightLight } from "./style"
+import {  ChevronRight, Clapperboard, Flame, Play, Star } from "lucide-react"
+import { BoxSectionSlidersTitle, BoxSectionWatchers, BoxSlider, CardContainer, ContainerBigCard, ContainerCards, ContainerMain, Heading2xl, HeadingLg, MovieDetailsCard, OverlayCard, Overview, SectionHightLight } from "./style"
 import { HightLightText } from "../../components/ui/HightLightText"
 import { HightLightDetails } from "../../components/ui/HightLightDetails"
 import { HightLightButton } from "../../components/ui/HightLightButton"
 import { Links } from "../../utils/links-array"
+import { SlickCarousel } from "../../components/Carousel"
+import { Card } from "../../components/Card"
+import { Button } from "../../components/ui/Button"
+import { PrevArrowSlider } from "../../components/Carousel/PrevArrow"
+
 
 
 export const Home = () => {
@@ -68,6 +73,37 @@ export const Home = () => {
           })}
         </ContainerCards>
       </SectionHightLight>
+      <BoxSlider>
+        <BoxSectionSlidersTitle>
+          <h2>Últimos lançamentos</h2>
+          <div>
+            <PrevArrowSlider />
+            <ChevronRight />
+          </div>
+        </BoxSectionSlidersTitle>
+        <SlickCarousel >
+          {Links.map((link, index) => {
+            return (
+              <Card key={index} imageUrl={link.imageUrl} />
+            )
+          })}
+        </SlickCarousel>
+      </BoxSlider>
+      <div>
+        <h2>Filmes assistidos</h2>
+        <BoxSectionWatchers>
+          <Clapperboard />
+          <div>
+            <h3>
+            Ops, nenhum filme avaliado ainda.
+          </h3>
+          <p>Que tal adicionar um?</p>
+          </div>
+          <Button>
+            Fazer login
+          </Button>
+        </BoxSectionWatchers>
+      </div>
     </ContainerMain>
   )
 }

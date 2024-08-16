@@ -7,6 +7,7 @@ export const ContainerMain = styled.main`
   display: flex;
   flex-direction: column;
   margin: 0 20px;
+  gap: 24px;
 
   @media (min-width: 1024px) {
     margin: 0 10px;
@@ -120,12 +121,42 @@ export const CardContainer = styled.div`
     gap: 28px;
     height: 100%;
   } */
-
 `
+//####################################################################################################//
 export const OverlayCard = styled.div`
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
   position: absolute;
   border-radius: 24px;
   inset: 0;
 
+`
+//####################################################################################################//
+export const BoxSlider = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 24px;
+  /* gap: 12px; */
+`
+
+
+export const BoxSectionSlidersTitle = styled.div`
+  display:  flex;
+  justify-content: space-between;
+`
+
+
+export const BoxSectionWatchers = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+
+  >div{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
 `
